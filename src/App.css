@@ -6,15 +6,9 @@
             "h h"
             "n c";
 }
-.App-Wrapper Header img {
-    width: 60px;
-    border-radius: 50%;
-}
 
-.Header {
-    grid-area: h;
-    background: darkolivegreen;
-}
+
+
 
 .NavBar {
     grid-area: n;
