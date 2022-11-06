@@ -1,4 +1,6 @@
 .App-Wrapper {
+    margin: 0 auto;
+    width: 1200px;
     display: grid;
     grid-template-rows: 60px 1fr;
     grid-auto-columns: 2fr 10fr;
@@ -10,13 +12,7 @@
 
 
 
-.NavBar {
-    grid-area: n;
-    background: darkgray;
-}
 
-.Content {
-    grid-area: c;
-    background: azure;
-}
+
+
 

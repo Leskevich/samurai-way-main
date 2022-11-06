@@ -1,8 +1,9 @@
 import React from 'react';
+import s from './Profile.module.css'
 
 export const Profile = () => {
     return (
-        <div className="Content">
+        <div className={s.Profile}>
             <div>
                 <img
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1VWPvGxGbsNquVt-BGE2P1DALIT_moFJ_BQ&usqp=CAU"
