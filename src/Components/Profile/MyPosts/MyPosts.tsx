@@ -5,12 +5,11 @@ import {Post} from "./Posts/Post";
 export const MyPosts = () => {
     return (
         <div className={s.MyPost}>
-
             <div>
-                my post
+                <textarea/>
             </div>
             <div>
-                add post
+                <button>add Post</button>
             </div>
             <Post textPost='post1' like={4}/>
             <Post textPost='2post' like={6}/>
