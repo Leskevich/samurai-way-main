@@ -1,4 +1,14 @@
 .NavBar {
     grid-area: n;
     background: darkgray;
+    padding: 20px;
+}
+
+.NavBar a {
+    color: white;
+    text-decoration: none;
+}
+
+.NavBar a.ActiveNavLink{
+    color: gold;
 }
