@@ -12,10 +12,8 @@ export const MyPosts = () => {
             <div>
                 add post
             </div>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
+            <Post textPost='post1' like={4}/>
+            <Post textPost='2post' like={6}/>
         </div>
     );
 };
