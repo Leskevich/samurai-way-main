@@ -9,6 +9,11 @@
             "n c";
 }
 
+.App-Wrapper-Content {
+    grid-area: c;
+    background: azure;
+}
+
 
 
 
