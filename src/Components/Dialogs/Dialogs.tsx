@@ -1,52 +1,47 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+import {DialogName} from "./DialogName/DialogName";
+import {DialogMessage} from "./DialogMassage/DialogMessage";
 
-type DialogNameType = {
+
+type DialogNameDataType = {
     name: string
-    id: string
+    id: number
 }
-type DialogMessage = {
+type DialogMessageDataTape = {
     message: string
-}
-const DialogName = ({name, id}: DialogNameType) => {
-    const pathLink = '/Dialogs/' + id
-    return (
-        <>
-            <NavLink to={pathLink}>{name}</NavLink>
-        </>
-    )
-}
-const DialogMessage = ({message}:DialogMessage) => {
-return(
-    <>
-        <div className={s.message}>{message}</div>
-    </>
-)
+    id: number
 }
 
+const dialogNameData: DialogNameDataType[] = [
+    {name: 'roma', id: 1},
+    {name: 'vadim', id: 2},
+    {name: 'anton', id: 3},
+    {name: 'andrei', id: 4},
+]
+const messageNameData: DialogMessageDataTape[] = [
+    {message: 'hi', id: 1},
+    {message: 'ho', id: 2},
+    {message: 'ky', id: 3},
+    {message: 'vai', id: 4},
+]
+const dialogMessageMap = messageNameData.map((el: DialogMessageDataTape) => <DialogMessage message={el.message}
+                                                                                           id={el.id}/>)
+const dialogNameMap = dialogNameData.map((el: DialogNameDataType) => {
+    return (
+        <div className={s.name + ' ' + s.active}>
+            <DialogName name={el.name} id={el.id}/>
+        </div>
+    )
+})
 export const Dialogs = () => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsName}>
-                <div className={s.name + ' ' + s.active}>
-                    <DialogName name={'roma'} id={'1'}/>
-                </div>
-                <div className={s.name}>
-                    <DialogName name={'vadim'} id={'2'}/>
-                </div>
-                <div className={s.name}>
-                    <DialogName name={'anton'} id={'3'}/>
-                </div>
-                <div className={s.name}>
-                    <DialogName name={'andrei'} id={'4'}/>
-                </div>
+                {dialogNameMap}
             </div>
             <div className={s.dialogMessage}>
-                <DialogMessage message={'hi'}/>
-                <DialogMessage message={'ho'}/>
-                <DialogMessage message={'ky'}/>
-                <DialogMessage message={'vai'}/>
+                {dialogMessageMap}
             </div>
         </div>
     );
