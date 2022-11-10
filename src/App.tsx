@@ -5,15 +5,21 @@ import {NavBar} from "./Components/NawBar/NavBar";
 import {Profile} from "./Components/Profile/Profile";
 import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
+import {stateType} from "./Redux/State";
 
-function App() {
+
+type appType = {
+    state: stateType
+}
+
+function App({state}: appType) {
     return (
         <div className="App-Wrapper">
             <Header/>
             <NavBar/>
             <div className='App-Wrapper-Content'>
-                <Route path={'/Profile'} render={() => <Profile/>}/>
-                <Route path={'/Dialogs'} render={() => <Dialogs/>}/>
+                <Route path={'/Profile'} render={() => <Profile state={state.profilePage}/>}/>
+                <Route path={'/Dialogs'} render={() => <Dialogs state={state.dialogPage}/>}/>
             </div>
 
         </div>

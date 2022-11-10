@@ -3,14 +3,21 @@ import s from './Profile.module.css'
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
-export const Profile = () => {
+import {profilePageType} from "../../Redux/State";
+
+type profileType = {
+    state: profilePageType
+}
+
+
+export const Profile = ({state}: profileType) => {
     return (
         <div className={s.Profile}>
             <div>
                 <ProfileInfo/>
             </div>
             <div>
-                <MyPosts/>
+                <MyPosts postData={state.posts}/>
             </div>
         </div>
     );

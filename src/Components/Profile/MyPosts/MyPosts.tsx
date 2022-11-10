@@ -1,18 +1,16 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Posts/Post";
+import {statePostType} from "../../../Redux/State";
 
-type postDataType = {
-    id: number,
-    textPost: string,
-    like: number
+
+
+type MyPostsType = {
+    postData:  statePostType[]
 }
-const postData: postDataType[] = [
-    {id: 1, textPost: 'post1', like: 4},
-    {id: 2, textPost: 'post2', like: 5},
-]
-let postDataMap = postData.map(el => <Post id={el.id} textPost={el.textPost} like={el.like}/>)
-export const MyPosts = () => {
+
+export const MyPosts = ({postData}: MyPostsType) => {
+    let postDataMap = postData.map(el => <Post key={el.id} id={el.id} textPost={el.textPost} like={el.like}/>)
     return (
         <div className={s.MyPost}>
             <div>
