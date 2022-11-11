@@ -1,3 +1,5 @@
+import {RenderThee} from "../render";
+
 export type statePostType = {
     id: number,
     textPost: string,
@@ -43,6 +45,12 @@ export const state: stateType = {
             {message: 'vai', id: 4},
         ]
     }
+}
+
+export const addPost = (text:string) =>{
+    let newPost:statePostType = {id:3,textPost:text,like:7}
+    state.profilePage.posts.push(newPost)
+    RenderThee(state)
 }
 
 

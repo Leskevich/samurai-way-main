@@ -13,8 +13,8 @@ export const Dialogs = ({state}: dialogType) => {
         .map((el: stateMessageType) => <DialogMessage key={el.id} message={el.message} id={el.id}/>)
     const dialogNameMap = state.dialog.map((el: stateDialogType) => {
         return (
-            <div className={s.name + ' ' + s.active}>
-                <DialogName key={el.id} name={el.name} id={el.id}/>
+            <div key={el.id} className={s.name + ' ' + s.active}>
+                <DialogName  name={el.name} id={el.id}/>
             </div>
         )
     })
