@@ -10,7 +10,7 @@ import {stateType} from "./Redux/State";
 
 type appType = {
     state: stateType
-    addPost: (text:string) => void
+    addPost: () => void
 }
 
 function App({state, addPost}: appType) {
@@ -22,7 +22,7 @@ function App({state, addPost}: appType) {
             <div className='App-Wrapper-Content'>
                 <Route path={'/Profile'} render={() => <Profile
                     state={state.profilePage}
-                    addPost={(text:string)=>addPost(text)}
+                    addPost={addPost}
                 />}/>
                 <Route path={'/Dialogs'} render={() => <Dialogs state={state.dialogPage}/>}/>
             </div>
