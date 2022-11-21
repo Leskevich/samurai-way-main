@@ -1,7 +1,21 @@
 import React from 'react';
 import './index.css';
-import {RenderThee} from "./render";
-import {state} from "./Redux/State";
 
+import {addPost, state, stateType, subscribe} from "./Redux/State";
+import ReactDOM from "react-dom";
+import {BrowserRouter} from "react-router-dom";
+import App from "./App";
 
-RenderThee(state)
+export const RenderThee = () => {
+    ReactDOM.render(
+        <BrowserRouter>
+            <App state={state}
+                 addPost={addPost}
+            />
+        </BrowserRouter>,
+        document.getElementById('root')
+    );
+}
+
+RenderThee()
+subscribe(RenderThee)

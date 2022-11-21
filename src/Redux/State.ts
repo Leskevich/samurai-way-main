@@ -1,4 +1,5 @@
-import {RenderThee} from "../render";
+let renderThee = () => {
+}
 
 export type statePostType = {
     id: number,
@@ -15,7 +16,7 @@ export type stateMessageType = {
 }
 export type profilePageType = {
     posts: statePostType[]
-    textNewPost:string
+    textNewPost: string
 }
 export type dialogPageType = {
     dialog: stateDialogType[]
@@ -31,7 +32,7 @@ export const state: stateType = {
             {id: 1, textPost: 'post1', like: 4},
             {id: 2, textPost: 'post2', like: 5},
         ],
-        textNewPost:''
+        textNewPost: ''
 
     },
     dialogPage: {
@@ -50,19 +51,24 @@ export const state: stateType = {
     }
 }
 
-export const addPost = () =>{
-    let newPost:statePostType = {
-        id:3,
-        textPost:state.profilePage.textNewPost,
-        like:7}
+export const addPost = () => {
+    let newPost: statePostType = {
+        id: 3,
+        textPost: state.profilePage.textNewPost,
+        like: 7
+    }
     state.profilePage.posts.push(newPost)
-    state.profilePage.textNewPost=''
-    RenderThee(state)
+    state.profilePage.textNewPost = ''
+    renderThee()
 }
 
-export const updateNewPost = (value:string)=> {
-    state.profilePage.textNewPost=value
-    RenderThee(state)
+export const updateNewPost = (value: string) => {
+    state.profilePage.textNewPost = value
+    renderThee()
+}
+
+export const subscribe = (observer: () => void) => {
+    renderThee = observer
 }
 
 

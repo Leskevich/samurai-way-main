@@ -11,11 +11,11 @@ type profileType = {
 }
 
 
-export const Profile = ({state,addPost}: profileType) => {
+export const Profile = ({state, addPost}: profileType) => {
     return (
         <div className={s.Profile}>
             <div>
-                <ProfileInfo />
+                <ProfileInfo/>
             </div>
             <div>
                 <MyPosts

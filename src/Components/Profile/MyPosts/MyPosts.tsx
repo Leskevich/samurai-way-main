@@ -7,10 +7,10 @@ import {statePostType, updateNewPost} from "../../../Redux/State";
 type MyPostsType = {
     postData: statePostType[]
     addPost: () => void
-    textNewPost:string
+    textNewPost: string
 }
 
-export const MyPosts = ({postData, addPost,textNewPost}: MyPostsType) => {
+export const MyPosts = ({postData, addPost, textNewPost}: MyPostsType) => {
     const postDataMap = postData.map(el => <Post key={el.id} id={el.id} textPost={el.textPost} like={el.like}/>)
     let netTextPost = React.createRef<HTMLTextAreaElement>()
 
@@ -19,13 +19,12 @@ export const MyPosts = ({postData, addPost,textNewPost}: MyPostsType) => {
             addPost()
         }
     }
-    const updetePost =()=>{
-        if (netTextPost.current?.value){
+    const updetePost = () => {
+        if (netTextPost.current?.value) {
             updateNewPost(netTextPost.current.value)
         }
     }
 
-    console.log(textNewPost)
 
     return (
         <div className={s.MyPost}>
