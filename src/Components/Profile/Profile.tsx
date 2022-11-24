@@ -3,16 +3,15 @@ import s from './Profile.module.css'
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
-import {profilePageType} from "../../Redux/State";
+import {ActionType, profilePageType} from "../../Redux/State";
 
 type profileType = {
     state: profilePageType
-    addPost: () => void
-    updateNewPost:(value:string)=>void
+    dispatch:(action:ActionType)=>void
 }
 
 
-export const Profile = ({state, addPost,updateNewPost}: profileType) => {
+export const Profile = ({state, dispatch}: profileType) => {
     return (
         <div className={s.Profile}>
             <div>
@@ -21,9 +20,8 @@ export const Profile = ({state, addPost,updateNewPost}: profileType) => {
             <div>
                 <MyPosts
                     postData={state.posts}
-                    addPost={addPost}
                     textNewPost={state.textNewPost}
-                    updateNewPost={updateNewPost}
+                    dispatch={dispatch}
                 />
             </div>
         </div>

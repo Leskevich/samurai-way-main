@@ -1,28 +1,27 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Posts/Post";
-import {statePostType} from "../../../Redux/State";
+import {ActionType, statePostType} from "../../../Redux/State";
 
 
 type MyPostsType = {
     postData: statePostType[]
-    addPost: () => void
     textNewPost: string
-    updateNewPost:(value:string)=>void
+    dispatch:(action:ActionType)=>void
 }
 
-export const MyPosts = ({postData, addPost, textNewPost,updateNewPost}: MyPostsType) => {
+export const MyPosts = ({postData, textNewPost,dispatch}: MyPostsType) => {
     const postDataMap = postData.map(el => <Post key={el.id} id={el.id} textPost={el.textPost} like={el.like}/>)
     let netTextPost = React.createRef<HTMLTextAreaElement>()
 
     const addNewPost = () => {
         if (netTextPost.current) {
-            addPost()
+            dispatch({type:"ADD-POST"})
         }
     }
     const updetePost = () => {
         if (netTextPost.current?.value) {
-            updateNewPost(netTextPost.current.value)
+           dispatch({type:"UPDATE-NEW-POST",value:netTextPost.current?.value})
         }
     }
 
