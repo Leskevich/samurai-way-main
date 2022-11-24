@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Posts/Post";
-import {ActionType, statePostType} from "../../../Redux/State";
+import {ActionType, AddPostAction, statePostType, UpdateNewPostAction} from "../../../Redux/State";
 
 
 type MyPostsType = {
@@ -16,12 +16,12 @@ export const MyPosts = ({postData, textNewPost,dispatch}: MyPostsType) => {
 
     const addNewPost = () => {
         if (netTextPost.current) {
-            dispatch({type:"ADD-POST"})
+            dispatch(AddPostAction())
         }
     }
     const updetePost = () => {
         if (netTextPost.current?.value) {
-           dispatch({type:"UPDATE-NEW-POST",value:netTextPost.current?.value})
+           dispatch(UpdateNewPostAction(netTextPost.current.value))
         }
     }
 

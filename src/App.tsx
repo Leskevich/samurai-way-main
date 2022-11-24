@@ -10,10 +10,10 @@ import {ActionType, stateType} from "./Redux/State";
 
 type appType = {
     state: stateType
-    dispatch:(action:ActionType)=>void
+    dispatch: (action: ActionType) => void
 }
 
-function App({state,dispatch}: appType) {
+function App({state, dispatch}: appType) {
 
     return (
         <div className="App-Wrapper">
@@ -24,7 +24,10 @@ function App({state,dispatch}: appType) {
                     state={state.profilePage}
                     dispatch={dispatch}
                 />}/>
-                <Route path={'/Dialogs'} render={() => <Dialogs state={state.dialogPage}/>}/>
+                <Route path={'/Dialogs'} render={() => <Dialogs
+                    state={state.dialogPage}
+                    dispatch={dispatch}
+                />}/>
             </div>
 
         </div>
