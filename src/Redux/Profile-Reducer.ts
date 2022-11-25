@@ -1,7 +1,15 @@
 import {profilePageType, statePostType} from "./State";
 
+const initialState: profilePageType = {
+    posts: [
+        {id: 1, textPost: 'post1', like: 4},
+        {id: 2, textPost: 'post2', like: 5},
+    ],
+    textNewPost: ''
 
-export const profileReducer = (state: profilePageType, action: ProfileReducerType) => {
+}
+
+export const profilePage = (state: profilePageType = initialState, action: ProfileReducerType) => {
     switch (action.type) {
         case "ADD-POST": {
             let newPost: statePostType = {

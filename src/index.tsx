@@ -1,9 +1,10 @@
 import React from 'react';
 import './index.css';
-import {store} from "./Redux/State";
+
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
+import {store} from "./Redux/Redux-Store";
 
 export const RenderThee = () => {
     ReactDOM.render(

@@ -1,5 +1,5 @@
-import {AddPostACType, profileReducer, UpdateNewPostACType} from "./Profile-Reducer";
-import {AddNewMessageACType, dialogReducer, NewTextMessageACType} from "./DialogPage-Reducer";
+import {AddPostACType, profilePage, UpdateNewPostACType} from "./Profile-Reducer";
+import {AddNewMessageACType, dialogPage, NewTextMessageACType} from "./DialogPage-Reducer";
 
 export type statePostType = {
     id: number,
@@ -36,7 +36,7 @@ export type storeType = {
 }
 
 
-export const store: storeType = {
+const store: storeType = {
     _state: {
         profilePage: {
             posts: [
@@ -73,8 +73,8 @@ export const store: storeType = {
     },
 
     dispatch(action: any) {
-        this._state.profilePage = profileReducer(this._state.profilePage,action  )
-        this._state.dialogPage = dialogReducer(this._state.dialogPage, action )
+        this._state.profilePage = profilePage(this._state.profilePage,action  )
+        this._state.dialogPage = dialogPage(this._state.dialogPage, action )
         this.callSubscriber()
     }
 }
