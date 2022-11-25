@@ -1,7 +1,8 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Posts/Post";
-import {ActionType, AddPostAction, statePostType, UpdateNewPostAction} from "../../../Redux/State";
+import {ActionType, statePostType} from "../../../Redux/State";
+import {AddPostAC, UpdateNewPostAC} from "../../../Redux/Profile-Reducer";
 
 
 type MyPostsType = {
@@ -16,12 +17,12 @@ export const MyPosts = ({postData, textNewPost,dispatch}: MyPostsType) => {
 
     const addNewPost = () => {
         if (netTextPost.current) {
-            dispatch(AddPostAction())
+            dispatch(AddPostAC())
         }
     }
     const updetePost = () => {
         if (netTextPost.current?.value) {
-           dispatch(UpdateNewPostAction(netTextPost.current.value))
+           dispatch(UpdateNewPostAC(netTextPost.current.value))
         }
     }
 

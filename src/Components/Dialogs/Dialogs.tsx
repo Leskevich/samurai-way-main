@@ -4,12 +4,13 @@ import {DialogName} from "./DialogName/DialogName";
 import {DialogMessage} from "./DialogMassage/DialogMessage";
 import {
     ActionType,
-    addNewMessageAction,
+
     dialogPageType,
-    newTextMessageAction,
+
     stateDialogType,
     stateMessageType
 } from "../../Redux/State";
+import {addNewMessageAC, newTextMessageAC} from "../../Redux/DialogPage-Reducer";
 
 
 type dialogType = {
@@ -28,10 +29,10 @@ export const Dialogs = ({state,dispatch}: dialogType) => {
     })
     const netTextMessage = React.createRef<HTMLTextAreaElement>()
     const newMessageHandler = (e:ChangeEvent<HTMLTextAreaElement>) =>{
-        dispatch(newTextMessageAction(e.currentTarget.value))
+        dispatch(newTextMessageAC(e.currentTarget.value))
     }
     const addNewMessage=()=>{
-        dispatch(addNewMessageAction())
+        dispatch(addNewMessageAC())
     }
     return (
         <div>
