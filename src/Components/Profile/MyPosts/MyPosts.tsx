@@ -1,28 +1,26 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Posts/Post";
-import {ActionType, statePostType} from "../../../Redux/State";
-import {AddPostAC, UpdateNewPostAC} from "../../../Redux/Profile-Reducer";
+import {statePostType} from "../../../Redux/State";
 
 
 type MyPostsType = {
     postData: statePostType[]
     textNewPost: string
-    dispatch:(action:ActionType)=>void
+    addNewPost: () => void
+    updatePost : (text:string)=>void
 }
 
-export const MyPosts = ({postData, textNewPost,dispatch}: MyPostsType) => {
+export const MyPosts = ({postData, textNewPost, ...props}: MyPostsType) => {
     const postDataMap = postData.map(el => <Post key={el.id} id={el.id} textPost={el.textPost} like={el.like}/>)
     let netTextPost = React.createRef<HTMLTextAreaElement>()
 
     const addNewPost = () => {
-        if (netTextPost.current) {
-            dispatch(AddPostAC())
-        }
+        props.addNewPost()
     }
-    const updetePost = () => {
+    const updatePost = () => {
         if (netTextPost.current?.value) {
-           dispatch(UpdateNewPostAC(netTextPost.current.value))
+           props.updatePost(netTextPost.current.value)
         }
     }
 
@@ -32,7 +30,7 @@ export const MyPosts = ({postData, textNewPost,dispatch}: MyPostsType) => {
             <div>
                 <textarea ref={netTextPost}
                           value={textNewPost}
-                          onChange={updetePost}/>
+                          onChange={updatePost}/>
             </div>
             <div>
                 <button onClick={addNewPost}>add Post</button>

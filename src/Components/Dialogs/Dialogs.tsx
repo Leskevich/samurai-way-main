@@ -2,25 +2,20 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import {DialogName} from "./DialogName/DialogName";
 import {DialogMessage} from "./DialogMassage/DialogMessage";
-import {
-    ActionType,
-
-    dialogPageType,
-
-    stateDialogType,
-    stateMessageType
-} from "../../Redux/State";
-import {addNewMessageAC, newTextMessageAC} from "../../Redux/DialogPage-Reducer";
+import {stateDialogType, stateMessageType} from "../../Redux/State";
 
 
 type dialogType = {
-    state: dialogPageType
-    dispatch:(action:ActionType)=>void
+    message:stateMessageType[]
+    dialog:stateDialogType[]
+    newMessageBody:string
+    addNewMessage:()=>void
+    newTextMessage:(test:string)=>void
 }
-export const Dialogs = ({state,dispatch}: dialogType) => {
-    const dialogMessageMap = state.message.map((el: stateMessageType) => <DialogMessage key={el.id} message={el.message}
+export const Dialogs = ({message,dialog,newMessageBody,...props}: dialogType) => {
+    const dialogMessageMap = message.map((el: stateMessageType) => <DialogMessage key={el.id} message={el.message}
                                                                                         id={el.id}/>)
-    const dialogNameMap = state.dialog.map((el: stateDialogType) => {
+    const dialogNameMap = dialog.map((el: stateDialogType) => {
         return (
             <div key={el.id} className={s.name + ' ' + s.active}>
                 <DialogName name={el.name} id={el.id}/>
@@ -29,10 +24,10 @@ export const Dialogs = ({state,dispatch}: dialogType) => {
     })
     const netTextMessage = React.createRef<HTMLTextAreaElement>()
     const newMessageHandler = (e:ChangeEvent<HTMLTextAreaElement>) =>{
-        dispatch(newTextMessageAC(e.currentTarget.value))
+        props.newTextMessage(e.currentTarget.value)
     }
     const addNewMessage=()=>{
-        dispatch(addNewMessageAC())
+        props.addNewMessage()
     }
     return (
         <div>
@@ -48,7 +43,7 @@ export const Dialogs = ({state,dispatch}: dialogType) => {
             <div>
                 <div>
                     <textarea ref={netTextMessage}
-                              value={state.newMessageBody}
+                              value={newMessageBody}
                               onChange={newMessageHandler}
                     />
                 </div>

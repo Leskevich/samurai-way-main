@@ -9,9 +9,7 @@ import {store} from "./Redux/Redux-Store";
 export const RenderThee = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={store.getState()}
-                 dispatch={store.dispatch.bind(store)}
-            />
+            <App />
         </BrowserRouter>,
         document.getElementById('root')
     );
