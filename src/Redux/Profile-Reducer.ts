@@ -1,41 +1,41 @@
-import {profilePageType, statePostType} from "./State";
+import {v1} from "uuid";
 
+export type statePostType = {
+    id: string,
+    textPost: string,
+    like: number
+}
+type profilePageType = {
+    posts: statePostType[]
+    textNewPost: string
+}
 const initialState: profilePageType = {
     posts: [
-        {id: 1, textPost: 'post1', like: 4},
-        {id: 2, textPost: 'post2', like: 5},
+        {id: v1(), textPost: 'post1', like: 4},
+        {id: v1(), textPost: 'post2', like: 5},
     ],
     textNewPost: ''
-
 }
 
 export const profilePage = (state: profilePageType = initialState, action: ProfileReducerType) => {
     switch (action.type) {
         case "ADD-POST": {
             let newPost: statePostType = {
-                id: 3,
+                id: v1(),
                 textPost: state.textNewPost,
                 like: 7
             }
-            state.posts.push(newPost)
-            state.textNewPost = ''
-            return state
-
+            return {...state, posts: [...state.posts, newPost], textNewPost: ''}
         }
-        case "UPDATE-NEW-POST": {
-            state.textNewPost = action.value
-
-            return state
-        }
+        case "UPDATE-NEW-POST":
+            return {...state, textNewPost: action.value}
         default:
             return state
     }
 };
 
-export type ProfileReducerType = AddPostACType | UpdateNewPostACType
+export type ProfileReducerType = ReturnType<typeof AddPostAC> | ReturnType<typeof UpdateNewPostAC>
 
-export type AddPostACType = ReturnType<typeof AddPostAC>
-export type UpdateNewPostACType = ReturnType<typeof UpdateNewPostAC>
 
 export const AddPostAC = () => {
     return {

@@ -4,7 +4,7 @@ import s from './Post.module.css'
 export type PostPropsType = {
     textPost: string
     like: number
-    id: number
+    id: string
 }
 
 

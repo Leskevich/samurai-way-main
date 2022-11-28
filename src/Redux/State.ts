@@ -1,6 +1,3 @@
-import {AddPostACType, profilePage, UpdateNewPostACType} from "./Profile-Reducer";
-import {dialogPage} from "./DialogPage-Reducer";
-
 export type statePostType = {
     id: number,
     textPost: string,
@@ -32,7 +29,7 @@ export type storeType = {
     getState: () => stateType
     callSubscriber: () => void
     subscribe: (observer: () => void) => void
-    dispatch: (action: ActionType) => void
+
 }
 
 
@@ -72,13 +69,9 @@ const store: storeType = {
         this.callSubscriber = observer
     },
 
-    dispatch(action: any) {
-        this._state.profilePage = profilePage(this._state.profilePage,action  )
-        this._state.dialogPage = dialogPage(this._state.dialogPage, action )
-        this.callSubscriber()
-    }
+
 }
-export type ActionType = AddPostACType|UpdateNewPostACType
+
 
 
 
