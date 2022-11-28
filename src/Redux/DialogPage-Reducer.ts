@@ -1,5 +1,17 @@
-import {dialogPageType, stateDialogType, stateMessageType} from "./State";
 
+type stateDialogType = {
+    name: string
+    id: number
+}
+type stateMessageType = {
+    message: string
+    id: number
+}
+type dialogPageType = {
+    dialog: stateDialogType[]
+    message: stateMessageType[]
+    newMessageBody: string
+}
 const initialState: dialogPageType = {
     dialog: [
         {name: 'roma', id: 1},
@@ -16,31 +28,34 @@ const initialState: dialogPageType = {
     newMessageBody: ''
 }
 
-export const dialogPage = (state: dialogPageType = initialState, action: DialogReducerType) => {
+export const dialogPage = (state: dialogPageType = initialState, action: DialogReducerType): dialogPageType => {
+
     switch (action.type) {
-        case "NEW-TEXT-POST": {
-            state.newMessageBody = action.value
-            return state
-        }
-        case "ADD-NEW-MESSAGE": {
+        case "NEW-TEXT-POST":
+            return {...state, newMessageBody: action.value}
+
+
+        case "ADD-NEW-MESSAGE":
             const newName: stateDialogType = {name: "Adi", id: 5}
             const newMessage: stateMessageType = {
                 message: state.newMessageBody,
                 id: 5
             }
-            state.message.push(newMessage)
-            state.dialog.push(newName)
-            state.newMessageBody = ''
-            return state
-        }
+            return {
+                ...state,
+                message: [...state.message, newMessage],
+                dialog: [...state.dialog, newName],
+                newMessageBody: ''
+            }
+
         default:
             return state
     }
 }
 
-export type DialogReducerType = NewTextMessageACType | AddNewMessageACType
-export type NewTextMessageACType = ReturnType<typeof newTextMessageAC>
-export type AddNewMessageACType = ReturnType<typeof addNewMessageAC>
+export type DialogReducerType =
+    ReturnType<typeof newTextMessageAC> |
+    ReturnType<typeof addNewMessageAC>
 
 
 export const newTextMessageAC = (value: string) => {

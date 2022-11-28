@@ -12,6 +12,7 @@ type appType = {
 }
 
 function App({}: appType) {
+
     return (
         <div className="App-Wrapper">
             <Header/>

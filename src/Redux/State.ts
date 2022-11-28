@@ -1,5 +1,5 @@
 import {AddPostACType, profilePage, UpdateNewPostACType} from "./Profile-Reducer";
-import {AddNewMessageACType, dialogPage, NewTextMessageACType} from "./DialogPage-Reducer";
+import {dialogPage} from "./DialogPage-Reducer";
 
 export type statePostType = {
     id: number,
@@ -78,7 +78,7 @@ const store: storeType = {
         this.callSubscriber()
     }
 }
-export type ActionType = NewTextMessageACType|AddNewMessageACType |AddPostACType|UpdateNewPostACType
+export type ActionType = AddPostACType|UpdateNewPostACType
 
 
 
