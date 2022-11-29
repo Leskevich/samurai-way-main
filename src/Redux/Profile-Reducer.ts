@@ -25,7 +25,7 @@ export const profilePage = (state: profilePageType = initialState, action: Profi
                 textPost: state.textNewPost,
                 like: 7
             }
-            return {...state, posts: [...state.posts, newPost], textNewPost: ''}
+            return {...state, posts: [newPost,...state.posts], textNewPost: ''}
         }
         case "UPDATE-NEW-POST":
             return {...state, textNewPost: action.value}
