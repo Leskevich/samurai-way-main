@@ -1,13 +1,13 @@
 
-type stateDialogType = {
+export type stateDialogType = {
     name: string
     id: number
 }
-type stateMessageType = {
+export type stateMessageType = {
     message: string
     id: number
 }
-type dialogPageType = {
+export type dialogPageType = {
     dialog: stateDialogType[]
     message: stateMessageType[]
     newMessageBody: string

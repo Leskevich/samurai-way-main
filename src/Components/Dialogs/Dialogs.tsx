@@ -3,16 +3,11 @@ import s from './Dialogs.module.css'
 import {DialogName} from "./DialogName/DialogName";
 import {DialogMessage} from "./DialogMassage/DialogMessage";
 import {stateDialogType, stateMessageType} from "../../Redux/State";
+import {DialogsContainerType} from "./ContenerDialogs";
 
 
-type dialogType = {
-    message:stateMessageType[]
-    dialog:stateDialogType[]
-    newMessageBody:string
-    addNewMessage:()=>void
-    newTextMessage:(test:string)=>void
-}
-export const Dialogs = ({message,dialog,newMessageBody,...props}: dialogType) => {
+
+export const Dialogs = ({message,dialog,newMessageBody,...props}: DialogsContainerType) => {
     const dialogMessageMap = message.map((el: stateMessageType) => <DialogMessage key={el.id} message={el.message}
                                                                                         id={el.id}/>)
     const dialogNameMap = dialog.map((el: stateDialogType) => {
