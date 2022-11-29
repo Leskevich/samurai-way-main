@@ -5,11 +5,10 @@ import {NavBar} from "./Components/NawBar/NavBar";
 import {Profile} from "./Components/Profile/Profile";
 import {Route} from "react-router-dom";
 import {ContainerDialogs} from "./Components/Dialogs/ContenerDialogs";
+import {ContainerUsers} from "./Components/Users/ContainerUsers";
 
 
-type appType = {
-
-}
+type appType = {}
 
 function App({}: appType) {
 
@@ -20,6 +19,7 @@ function App({}: appType) {
             <div className='App-Wrapper-Content'>
                 <Route path={'/Profile'} render={() => <Profile/>}/>
                 <Route path={'/Dialogs'} render={() => <ContainerDialogs/>}/>
+                <Route path={'/Users'} render={() => <ContainerUsers/>}/>
             </div>
 
         </div>

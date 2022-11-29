@@ -10,9 +10,11 @@ export const MyPosts = ({postData, textNewPost, ...props}: MyPostType) => {
 
     const addNewPost = () => {
         props.addNewPost()
+
     }
     const updatePost = () => {
         if (netTextPost.current?.value) {
+
            props.updatePost(netTextPost.current.value)
         }
     }
