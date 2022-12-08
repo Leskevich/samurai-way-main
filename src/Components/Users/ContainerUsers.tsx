@@ -3,29 +3,33 @@ import {Users} from "./Users";
 import {connect} from "react-redux";
 import {stateType} from "../../Redux/Redux-Store";
 import {Dispatch} from "redux";
-import {follow, unFollow, UserType} from "../../Redux/Users-Reducer";
+import {follow, setUsers, unFollow, UserType} from "../../Redux/Users-Reducer";
 
 export type UserPropsType = mapStateToPropsType & mapDispatchToPropsType
 type mapStateToPropsType = {
     users: UserType[]
 }
 type mapDispatchToPropsType = {
-    follow: (userId: string) => void
-    unFollow: (userId: string) => void
+    follow: (userId: number) => void
+    unFollow: (userId: number) => void
+    setUsers:(users:UserType[])=>void
 }
 
 const mapStateToProps = (state: stateType): mapStateToPropsType => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.items
     }
 }
 const mapDispatchToProps = (dispatch: (Dispatch)): mapDispatchToPropsType => {
     return {
-        follow: (userId: string) => {
+        follow: (userId: number) => {
             dispatch(follow(userId))
         },
-        unFollow: (userId: string) => {
+        unFollow: (userId: number) => {
             dispatch(unFollow(userId))
+        },
+        setUsers:(users:UserType[])=>{
+            dispatch(setUsers(users))
         }
 
     }
