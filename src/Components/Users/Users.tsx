@@ -4,13 +4,16 @@ import s from './Users.module.css'
 import axios from "axios";
 import {InitialStateType} from "../../Redux/Users-Reducer";
 
-export const Users = ({users, follow, unFollow,setUsers, ...props}: UserPropsType) => {
-
+export const Users = ({users, follow, unFollow, setUsers, ...props}: UserPropsType) => {
     const getUsers = () => {
-        if (users.length===0) {
+        if (users.length === 0) {
 
             axios.get<InitialStateType>("https://social-network.samuraijs.com/api/1.0/users")
-                .then(res => setUsers(res.data.items))
+                .then(res => {
+                    setUsers(res.data.items)
+                    console.log(res.data.items)
+                })
+
         }
     }
 
@@ -18,19 +21,18 @@ export const Users = ({users, follow, unFollow,setUsers, ...props}: UserPropsTyp
         const buttonFriend = e.followed ?
             <button onClick={() => unFollow(e.id)}>unFollow</button>
             : <button onClick={() => follow(e.id)}>follow</button>
-        return (
 
+        const iconAvatar = "https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg"
+        return (
             <div key={e.id} className={s.container}>
                 <div>
-                    <div >
-                        <img src="https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg"
+                    <div>
+                        <img src={e.photos.small ? e.photos.small : iconAvatar}
                              alt="тут фото"
                              className={s.avatar}
                         />
                     </div>
-
                     {buttonFriend}
-
                 </div>
                 <div className={s.info}>
                     <div>
@@ -52,4 +54,7 @@ export const Users = ({users, follow, unFollow,setUsers, ...props}: UserPropsTyp
         </div>
     );
 };
+
+
+
 
