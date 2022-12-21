@@ -7,15 +7,13 @@ import {UserPropsType} from "./ContainerUsers";
 
 
 export class UsersC extends React.Component<UserPropsType> {
-    getUsers = () => {
-        if (this.props.users.length === 0) {
 
-            axios.get<InitialStateType>("https://social-network.samuraijs.com/api/1.0/users")
-                .then(res => {
-                    this.props.setUsers(res.data.items)
-                    console.log(res.data.items)
-                })
-        }
+    componentDidMount() {
+        axios.get<InitialStateType>("https://social-network.samuraijs.com/api/1.0/users")
+            .then(res => {
+                this.props.setUsers(res.data.items)
+                console.log(res.data.items)
+            })
     }
 
     render() {
@@ -51,7 +49,7 @@ export class UsersC extends React.Component<UserPropsType> {
         })
         return (
             <div>
-                <button onClick={this.getUsers}>+</button>
+
                 {usersMap}
             </div>
         );
