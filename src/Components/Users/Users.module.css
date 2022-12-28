@@ -13,3 +13,7 @@
     height: 60px;
     border-radius: 30px;
 }
+
+.activePage{
+    font-weight: bold;
+}
