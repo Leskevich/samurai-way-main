@@ -6,7 +6,7 @@ export const NavBar = () => {
     return (
         <nav className={s.NavBar}>
             <div>
-                <NavLink to="/Profile" activeClassName={s.ActiveNavLink}>Profile</NavLink>
+                <NavLink to="/Profile/" activeClassName={s.ActiveNavLink}>Profile</NavLink>
             </div>
             <div>
                 <NavLink to="/Dialogs" activeClassName={s.ActiveNavLink}>Dialogs</NavLink>

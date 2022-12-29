@@ -16,7 +16,7 @@ import axios from "axios";
 
 import {Preloader} from "../Common/Preloader/Preloader";
 
-export class UsersApi extends React.Component<UserPropsType> {
+ class UsersApi extends React.Component<UserPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
@@ -70,7 +70,6 @@ type mapDispatchToPropsType = {
     setTotalCount: (totalCount: number) => void
     toggleIsFetching:(isFetching:boolean)=>void
 }
-
 const mapStateToProps = (state: stateType): mapStateToPropsType => {
     return {
         users: state.usersPage.items,

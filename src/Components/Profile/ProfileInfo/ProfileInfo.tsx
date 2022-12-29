@@ -1,6 +1,14 @@
 import React from 'react';
+import {userProfileType} from "../../../Redux/Profile-Reducer";
 
-export const ProfileInfo = () => {
+type profileInfoType = {
+    profile: userProfileType | null
+
+}
+
+export const ProfileInfo = (props: profileInfoType) => {
+    const {profile} = props
+
     return (
         <div>
             <div>
@@ -9,7 +17,13 @@ export const ProfileInfo = () => {
                     alt=""/>
             </div>
             <div>
-                ava+description
+                <img src={profile?.photos.large} alt="photoUser"/>
+                <div>
+                    {profile?.fullName}
+                </div>
+                <div>
+                    {profile?.aboutMe}
+                </div>
             </div>
         </div>
     );

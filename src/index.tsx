@@ -13,7 +13,6 @@ export const RenderThee = () => {
             <Provider store={store}>
                 <App />
             </Provider>
-
         </BrowserRouter>,
         document.getElementById('root')
     );

@@ -2,10 +2,11 @@ import React from 'react';
 import './App.css';
 import {Header} from "./Components/Header/Header";
 import {NavBar} from "./Components/NawBar/NavBar";
-import {Profile} from "./Components/Profile/Profile";
 import {Route} from "react-router-dom";
 import {ContainerDialogs} from "./Components/Dialogs/ContenerDialogs";
 import {ContainerUsers} from "./Components/Users/ContainerUsers";
+import ProfileContainer from "./Components/Profile/ProfileInfo/ProfileContainer";
+
 
 
 type appType = {}
@@ -17,7 +18,7 @@ function App({}: appType) {
             <Header/>
             <NavBar/>
             <div className='App-Wrapper-Content'>
-                <Route path={'/Profile'} render={() => <Profile/>}/>
+                <Route path={'/Profile/:userId'} render={() => <ProfileContainer/>}/>
                 <Route path={'/Dialogs'} render={() => <ContainerDialogs/>}/>
                 <Route path={'/Users'} render={() => <ContainerUsers/>}/>
             </div>

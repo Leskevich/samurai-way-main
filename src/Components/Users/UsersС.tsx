@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Users.module.css'
 import {UserType} from "../../Redux/Users-Reducer";
+import {NavLink} from "react-router-dom";
 
 type UsersType = {
     totalCount:number
@@ -28,10 +29,14 @@ export const Users = (props: UsersType) => {
             <div key={e.id} className={s.container}>
                 <div>
                     <div>
-                        <img src={e.photos.small ? e.photos.small : iconAvatar}
-                             alt="тут фото"
-                             className={s.avatar}
-                        />
+                        <NavLink to={`/Profile/${e.id}`}>
+                            <img src={e.photos.small ? e.photos.small : iconAvatar}
+                                 alt="тут фото"
+                                 className={s.avatar}
+                            />
+                        </NavLink>
+
+
                     </div>
                     {buttonFriend}
                 </div>
