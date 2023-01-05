@@ -8,10 +8,10 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 
 class ProfileContainer extends React.Component<RouteType> {
     componentDidMount() {
-        let userId = this.props.match.params.userId
-        axios.get<userProfileType>('https://social-network.samuraijs.com/api/1.0//profile/' + userId)
+
+        let userId = this.props.match.params.userId ? this.props.match.params.userId : 18930
+        axios.get<userProfileType>('https://social-network.samuraijs.com/api/1.0/profile/' + userId)
             .then(res => {
-                console.log(this.props.profile)
                 this.props.setProfileUser(res.data)
             })
     }

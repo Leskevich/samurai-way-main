@@ -1,6 +1,9 @@
 .Header {
     grid-area: h;
     background: darkolivegreen;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .Header img {
     width: 60px;
