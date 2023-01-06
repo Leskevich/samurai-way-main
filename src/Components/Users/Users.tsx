@@ -1,36 +1,42 @@
 import React from 'react';
-import {UserPropsType} from "./ContainerUsers";
 import s from './Users.module.css'
-import axios from "axios";
-import {InitialStateType} from "../../Redux/Users-Reducer";
+import {UserType} from "../../Redux/Users-Reducer";
+import {NavLink} from "react-router-dom";
 
-export const Users = ({users, follow, unFollow, setUsers, ...props}: UserPropsType) => {
-    const getUsers = () => {
-        if (users.length === 0) {
+type UsersType = {
+    totalCount:number
+    users: UserType[]
+    pageSize: number,
+    follow: (userId: number) => void
+    unFollow: (userId: number) => void
+    getPage:(page:number)=>void
+    currentPage:number
+}
 
-            axios.get<InitialStateType>("https://social-network.samuraijs.com/api/1.0/users")
-                .then(res => {
-                    setUsers(res.data.items)
-                    console.log(res.data.items)
-                })
+export const Users = (props: UsersType) => {
+    const {users,pageSize,follow,unFollow,getPage,totalCount,currentPage} = props
 
-        }
-    }
 
-    const usersMap = users.map(e => {
+    const usersMap = users.map((e: any) => {
         const buttonFriend = e.followed ?
             <button onClick={() => unFollow(e.id)}>unFollow</button>
             : <button onClick={() => follow(e.id)}>follow</button>
 
         const iconAvatar = "https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg"
+
         return (
+
             <div key={e.id} className={s.container}>
                 <div>
                     <div>
-                        <img src={e.photos.small ? e.photos.small : iconAvatar}
-                             alt="тут фото"
-                             className={s.avatar}
-                        />
+                        <NavLink to={`/Profile/${e.id}`}>
+                            <img src={e.photos.small ? e.photos.small : iconAvatar}
+                                 alt="тут фото"
+                                 className={s.avatar}
+                            />
+                        </NavLink>
+
+
                     </div>
                     {buttonFriend}
                 </div>
@@ -47,13 +53,28 @@ export const Users = ({users, follow, unFollow, setUsers, ...props}: UserPropsTy
             </div>
         )
     })
+    const pageCount = Math.ceil(totalCount / pageSize)
+    const pages = []
+    for (let i = 1; i <= pageCount; i++) {
+        pages.push(i)
+    }
     return (
         <div>
-            <button onClick={getUsers}>+</button>
+            <div>
+                {pages.map((e, index) =>
+                    <span key={index}
+                          onClick={() => getPage(e)}
+                    className={currentPage===e ? s.activePage:''}
+                    >
+                        {e}
+                    </span>)
+                }
+            </div>
             {usersMap}
         </div>
     );
-};
+}
+
 
 
 

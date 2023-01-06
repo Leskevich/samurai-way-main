@@ -1,5 +1,4 @@
 import React from "react";
-import {ReactComponent} from "*.svg";
 import {Header} from "./Header";
 import {connect} from "react-redux";
 import axios from "axios";
@@ -11,7 +10,6 @@ class HeaderContainer extends React.Component<PropsType> {
         axios.get("https://social-network.samuraijs.com/api/1.0/auth/me",{withCredentials:true})
             .then(res => {
                 if (res.data.resultCode===0){
-                    console.log(res)
                     this.props.setLoginData(res.data.data)
                 }
             })

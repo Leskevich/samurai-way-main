@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {stateType} from "../../Redux/Redux-Store";
 import {
     follow,
-    InitialStateType,
     setCurrentPage,
     setTotalCount,
     setUsers,
@@ -11,46 +10,36 @@ import {
     unFollow,
     UserType
 } from "../../Redux/Users-Reducer";
-import {Users} from "./UsersС";
-import axios from "axios";
-
+import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
+import {Follow, UserApi} from "../../Api/Api";
 
 class UsersApi extends React.Component<UserPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get<InitialStateType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
+        UserApi.getUsers(this.props.currentPage,this.props.pageSize)
             .then(res => {
-                this.props.setUsers(res.data.items)
-                this.props.setTotalCount(res.data.totalCount)
+                this.props.setUsers(res.items)
+                this.props.setTotalCount(res.totalCount)
                 this.props.toggleIsFetching(false)
             })
     }
 
     follow(userId: number) {
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/` + userId, {},
-            {
-                withCredentials: true,
-                headers: {
-                    "API-KEY": 'e9ba546b-c611-4fa5-a013-95b51f08ac2c'
-                }
-            }
-        )
+        Follow.follow(userId)
             .then(res => {
-                if (res.data.resultCode === 0) {
-                    console.log('kkk')
+                this.props.follow(userId)
 
-                }
             })
     }
 
     getPage(page: number) {
         this.props.setCurrentPage(page)
         this.props.toggleIsFetching(true)
-        axios.get<InitialStateType>(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`, {withCredentials: true})
+        UserApi.getUsers(page,this.props.pageSize)
             .then(res => {
-                this.props.setUsers(res.data.items)
+                this.props.setUsers(res.items)
                 this.props.toggleIsFetching(false)
             })
     }
